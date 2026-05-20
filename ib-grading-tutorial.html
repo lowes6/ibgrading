@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root {
+    --primary: #2563eb;
+    --primary-light: #dbeafe;
+    --admin: #7c3aed;
+    --admin-light: #ede9fe;
+    --hod: #059669;
+    --hod-light: #d1fae5;
+    --teacher: #d97706;
+    --teacher-light: #fef3c7;
+    --text: #1e293b;
+    --text-light: #64748b;
+    --bg: #ffffff;
+    --bg-alt: #f8fafc;
+    --border: #e2e8f0;
+  }
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 3px solid var(--primary);
+  }
+  
+  .header h1 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+  }
+  
+  .header p {
+    font-size: 1.1rem;
+    color: var(--text-light);
+  }
+  
+  .section { margin-bottom: 3rem; }
+  
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+  }
+  
+  .section-header.admin {
+    background: var(--admin-light);
+    border-left: 4px solid var(--admin);
+  }
+  .section-header.hod {
+    background: var(--hod-light);
+    border-left: 4px solid var(--hod);
+  }
+  .section-header.teacher {
+    background: var(--teacher-light);
+    border-left: 4px solid var(--teacher);
+  }
+  
+  .section-header h2 { font-size: 1.4rem; }
+  .section-header.admin h2 { color: var(--admin); }
+  .section-header.hod h2 { color: var(--hod); }
+  .section-header.teacher h2 { color: var(--teacher); }
+  
+  .step {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+  
+  .admin .step .step-number { background: var(--admin); }
+  .hod .step .step-number { background: var(--hod); }
+  .teacher .step .step-number { background: var(--teacher); }
+  
+  .step h3 { font-size: 1.15rem; color: var(--text); }
+  
+.gif-container {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+    background: #d1d5db;
+    padding: 4px;
+    border-radius: 4px;
+  }
+  
+  .gif-container img {
+    max-width: 480px;
+    max-height: 600px;
+    width: auto;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    object-fit: contain;
+  }
+
+.gif-container.fit img {
+    width: 100%;
+    height: auto;
+    max-width: none;
+    max-height: none;
+  }
+  
+  .step-description {
+    margin-top: 1rem;
+    color: var(--text);
+    line-height: 1.7;
+  }
+  
+  .step-description ul {
+    margin: 0.75rem 0;
+    padding-left: 1.5rem;
+  }
+  
+  .step-description li { margin-bottom: 0.5rem; }
+  
+  .tip-box {
+    background: #fefce8;
+    border: 1px solid #fde047;
+    border-left: 4px solid #eab308;
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-top: 1rem;
+  }
+  
+  .tip-box strong { color: #a16207; }
+  
+  .info-box {
+    background: var(--primary-light);
+    border: 1px solid #93c5fd;
+    border-left: 4px solid var(--primary);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-top: 1rem;
+  }
+  
+  .info-box strong { color: var(--primary); }
+  
+  @media (max-width: 640px) {
+    .container { padding: 1rem; }
+    .header h1 { font-size: 1.5rem; }
+    .step { padding: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  
+  <div class="header">
+    <h1>📘 IB Diploma Level Grading Setup</h1>
+    <p>A step-by-step visual guide for Administrators, Heads of Department, and Teachers using Toddle</p>
+  </div>
+
+  <!-- ADMIN SECTION -->
+  <div class="section admin">
+    <div class="section-header admin">
+      <h2>🔑 Administrator Setup</h2>
+    </div>
+    
+    <div class="step">
+      <div class="step-header">
+        <span class="step-number">1</span>
+        <h3>Select Grading Setup in the DP Admin Panel</h3>
+      </div>
+      <div class="gif-container">
+        <img src="gifs/step1.gif" alt="Navigating to Grading Setup in the DP Admin Panel">
+      </div>
+      <div class="step-description">
+        <p>Navigate to the <strong>Diploma Programme (DP) Admin Panel</strong> and select <strong>Grading Setup</strong>. This is where all grading configurations begin — the settings you define here will be available to Heads of Department and Teachers when they set up their courses and assessments.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-header">
+        <span class="step-number">2</span>
+        <h3>Create Required Grading Categories</h3>
+      </div>
+      <div class="gif-container fit">
+        <img src="gifs/step2.gif" alt="Creating grading categories in the admin panel">
+      </div>
+      <div class="step-description">
+        <p>Create all the grading categories that your school uses. These categories will be available for Heads of Department to assign weights and for Teachers to use when creating assessments.</p>
+        <p><strong>Typical categories include:</strong></p>
+        <ul>
+          <li><strong>ATL (Approaches to Learning)</strong> — Strengths (×2) and Weaknesses (×2)</li>
+          <li><strong>OAG (Overall Attainment Grade)</strong></li>
+          <li><strong>Classroom Expectations</strong></li>
+          <li><strong>PPG (Personal Progress Grade)</strong></li>
+          <li><strong>PG (Progress Grade)</strong></li>
+        </ul>
+        <p>Once created, these categories are pushed out and available across all DP courses.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEAD OF DEPARTMENT SECTION -->
+  <div class="section hod">
+    <div class="section-header hod">
+      <h2>📋 Head of Department Setup</h2>
+    </div>
+    
+    <div class="step">
+      <div class="step-header">
+        <span class="step-number">3</span>
+        <h3>Switch to Blueprint Courses</h3>
+      </div>
+      <div class="gif-container fit">
+        <img src="gifs/step3.gif" alt="Switching to Blueprint Courses view">
+      </div>
+      <div class="step-description">
+        <p>In the course navigation, switch your view to <strong>Blueprint Courses</strong>. Blueprint courses are the templates that define your subject structure — any changes you make here will cascade to all Teacher Courses linked to this subject.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-header">
+        <span class="step-number">4</span>
+        <h3>Choose One of Your Blueprint Courses</h3>
+      </div>
+      <div class="gif-container fit">
+        <img src="gifs/step4.gif" alt="Selecting a Blueprint course from the list">
+      </div>
+      <div class="step-description">
+        <p>Select the Blueprint course for the subject you want to configure. This course acts as the master template — grading setup changes made here will automatically apply to all Teacher Courses under this subject.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-header">
+        <span class="step-number">5</span>
+        <h3>Go to Settings and Choose Subject Settings</h3>
+      </div>
+      <div class="gif-container">
+        <img src="gifs/step5.gif" alt="Accessing Subject Settings from the Blueprint course">
+      </div>
+      <div class="step-description">
+        <p>Within the Blueprint course, navigate to <strong>Settings</strong> and select <strong>Subject Settings</strong>. This is where you'll configure grading weights, grade scales, and final grade calculations for your subject.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-header">
+        <span class="step-number">6</span>
+        <h3>Note: Changes Apply to All Teacher Courses</h3>
+      </div>
+      <div class="gif-container fit">
+        <img src="gifs/step6.gif" alt="Important note about changes applying to all Teacher Courses">
+      </div>
+      <div class="step-description">
+        <div class="tip-box">
+          <strong>⚠️ Important:</strong> Any changes you make to grading settings in the Blueprint course will automatically apply to <strong>all Teacher Courses</strong> linked to this subject. Plan your configuration carefully before making changes.
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-header">
+        <span class="step-number">7</span>
+        <h3>Set Papers/Categories and Weights</h3>
+      </div>
+      <div class="gif-container fit">
+        <img src="gifs/step7.gif" alt="Configuring papers/categories and their weights towards the final grade">
+      </div>
+      <div class="step-description">
+        <p>Configure the <strong>Papers or Categories</strong> for your subject and assign the weight each contributes towards the final grade. The weights should total 100% and reflect your assessment strategy for the subject.</p>
+        <p><strong>Example:</strong> Internal Assessment (40%) + Paper 1 (30%) + Paper 2 (30%) = 100%</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-header">
+        <span class="step-number">8</span>
+        <h3>Set IB Grade Translation (Optional)</h3>
+      </div>
+      <div class="gif-container fit">
+        <img src="gifs/step8.gif" alt="Choosing IB grade translation and setting grade boundaries">
+      </div>
+      <div class="step-description">
+        <p>If you want each category to translate to an <strong>IB grade</strong> (1–7), enable this option here and set the <strong>Grade Boundaries</strong> for each category. Grade boundaries define the score thresholds for each IB grade level.</p>
+        <p>This is useful when you want to see how students are performing relative to IB standards at a category level, before the final grade is calculated.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-header">
+        <span class="step-number">9</span>
+        <h3>Set Final Grade as OAG</h3>
+      </div>
+      <div class="gif-container fit">
+        <img src="gifs/step9.gif" alt="Scrolling down and choosing OAG as the final grade type">
+      </div>
+      <div class="step-description">
+        <p>Scroll down to the <strong>Final Grade</strong> section and select <strong>OAG (Overall Attainment Grade)</strong> as your final grade type. The OAG represents the overall performance grade for the subject, calculated based on the category weights and scores you've configured.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-header">
+        <span class="step-number">10</span>
+        <h3>Choose Assessment Scoring Method</h3>
+      </div>
+      <div class="gif-container fit">
+        <img src="gifs/step10.gif" alt="Choosing between Average and Weighted Average for assessment scoring">
+      </div>
+      <div class="step-description">
+        <p>Choose how individual assessments within a category contribute to the overall category score:</p>
+        <ul>
+          <li><strong>Average</strong> — All assessments are weighted equally. The category score is the simple average of all assessment scores.</li>
+          <li><strong>Weighted Average</strong> — Assessments have different weights. More important assessments contribute more to the category score.</li>
+        </ul>
+        <div class="info-box">
+          <strong>💡 Tip:</strong> Use <strong>Average</strong> when all assessments are of equal importance, and <strong>Weighted Average</strong> when some assessments (like final exams) carry more significance than others.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEACHER / HEAD OF DEPARTMENT SECTION -->
+  <div class="section teacher">
+    <div class="section-header teacher">
+      <h2>🎓 Teacher / Head of Department</h2>
+    </div>
+    
+    <div class="step">
+      <div class="step-header">
+        <span class="step-number">11</span>
+        <h3>Create a New Summative Assessment</h3>
+      </div>
+      <div class="gif-container">
+        <img src="gifs/step11.gif" alt="Creating a new Summative Assessment on a course unit">
+      </div>
+      <div class="step-description">
+        <p>From either the <strong>Blueprint Course Unit</strong> or your <strong>Teacher Course Unit</strong>, create a new <strong>Summative Assessment</strong>. Summative assessments are the graded tasks that contribute to your students' final grades.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-header">
+        <span class="step-number">12</span>
+        <h3>Complete Assessment Details</h3>
+      </div>
+      <div class="gif-container fit">
+        <img src="gifs/step12.gif" alt="Completing assessment details including category, maximum score, and IB grade scale">
+      </div>
+      <div class="step-description">
+        <p>Fill in all the assessment details:</p>
+        <ul>
+          <li><strong>Category</strong> — Assign the assessment to the appropriate grading category (e.g., Internal Assessment, Paper 1, ATL, etc.)</li>
+          <li><strong>Maximum Score</strong> — Set the total marks available for this assessment</li>
+          <li><strong>IB Grade Scale</strong> — If you want the assessment to translate to an IB grade, select <strong>IB Grade Scale</strong> and enable <strong>Grade Automatically</strong>. You'll be prompted to enter the Grade Boundaries that map scores to IB grades (1–7)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-header">
+        <span class="step-number">13</span>
+        <h3>Check Visibility and Submission Settings</h3>
+      </div>
+      <div class="gif-container fit">
+        <img src="gifs/step13.gif" alt="Configuring visibility and submission settings for the assessment">
+      </div>
+      <div class="step-description">
+        <p>Review and configure who can see the assessment and how students interact with it:</p>
+        <ul>
+          <li><strong>Student Visibility</strong> — Decide whether students can see the assessment, its details, and their grades</li>
+          <li><strong>Submission Requirements</strong> — Configure what students need to submit (file uploads, text responses, links, or no submission)</li>
+        </ul>
+        <div class="tip-box">
+          <strong>⚠️ Important for Paper Tests:</strong> If this is a written exam or paper-based test where you'll enter grades manually, you may want to:
+          <ul>
+            <li>Set visibility to <strong>Teachers Only</strong> — students don't need to see the assessment</li>
+            <li><strong>Turn off submissions</strong> — since students won't be uploading work</li>
+          </ul>
+          This turns the assessment into a simple space for you to record and calculate grades.
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-header">
+        <span class="step-number">14</span>
+        <h3>Enter Scores and Mark as Evaluated</h3>
+      </div>
+      <div class="gif-container fit">
+        <img src="gifs/step14.gif" alt="Entering scores in the gradebook and marking assessment as evaluated">
+      </div>
+      <div class="step-description">
+        <p>Open the <strong>Gradebook</strong> for your class and enter the scores for each student.</p>
+        <div class="info-box">
+          <strong>🔑 Key Step:</strong> Once you've entered all scores, <strong>mark the assessment as "Evaluated"</strong>. This triggers the system to automatically calculate grades based on your configured weights, grade boundaries, and scoring methods.
+        </div>
+        <p>Until you mark it as evaluated, grades will not be automatically calculated or displayed in the student's overall grade summary.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
